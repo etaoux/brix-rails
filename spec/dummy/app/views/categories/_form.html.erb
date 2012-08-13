@@ -1,0 +1,6 @@
+<%= simple_form_for(@category) do |f| %>
+  <%= f.input :name %>
+  <div class="form-actions">
+    <%= bx_button_tag("Submit",:color => "blue") %> <%= bx_link_to "Cancel", categories_path %>
+  </div>
+<% end %>

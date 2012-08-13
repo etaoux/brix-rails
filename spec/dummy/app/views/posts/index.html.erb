@@ -1,0 +1,26 @@
+<h1>Listing posts</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Category</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @posts.each do |post| %>
+  <tr>
+    <td><%= post.title %></td>
+    <td><%= post.category_name %></td>
+    <td><%= bx_link_to 'Show', post %></td>
+    <td><%= bx_link_to 'Edit', edit_post_path(post), color: :blue %></td>
+    <td><%= bx_link_to 'Destroy', post, method: :delete, color: :red, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @posts %>
+
+<br />
+
+<%= bx_link_to 'New Post', new_post_path, :color => :blue %>
+<%= bx_link_to 'New Post', new_post_path, :color => :red, :style => :medium, :disabled => true %>

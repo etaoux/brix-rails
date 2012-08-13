@@ -6,6 +6,8 @@ Brix for Rails gem, make you fast use Brix in you Rails application.
 
 * Rails
 * [kissy-rails](https://github.com/huacnlee/kissy-rails)
+* SimpleForm
+* WillPaginate
 
 ## Features
 

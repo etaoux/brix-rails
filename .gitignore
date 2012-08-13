@@ -1,1 +1,5 @@
 .DS_Store
+spec/dummy/tmp
+spec/dummy/db/*.sqlite3
+spec/dummy/test
+spec/dummy/log

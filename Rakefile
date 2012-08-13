@@ -23,18 +23,17 @@ namespace :assets do
       puts "(WARNNING) Brix source not exist, please clone it from git://github.com/etaoux/brix.git to ../brix"
       exit(0)
     end
-    copy_file([@dist_path,"brix-min.css"].join("/"), "#{@assets_path}stylesheets/brix/base.css")
+    copy_file([@dist_path,"brix-min.css"].join("/"), "#{@assets_path}stylesheets/brix/base.scss")
     copy_file([@dist_path,"brix-min.js"].join("/"), "#{@assets_path}javascripts/brix/base.js")
     copy_file([@dist_path,"brix.png"].join("/"), "#{@assets_path}images/brix.png")
     %w(breadcrumbs colorpicker dialog dropdown fold form inplaceeditor kwicks pagination starrating switcher).each do |c_name|
       copy_file([@dist_path,"gallery",c_name,"index-min.js"].join("/"), "#{@assets_path}javascripts/brix/#{c_name}.js")
       css_path = [@dist_path,"gallery",c_name,"#{c_name}-min.css"].join("/")
-      to_css_path = "#{@assets_path}stylesheets/brix/#{c_name}.css"
+      to_css_path = "#{@assets_path}stylesheets/brix/#{c_name}.scss"
       if File.exist?(css_path)
         copy_file(css_path, to_css_path)
         # Replace image path as Assets style
-        replace_file(to_css_path, /url\(/,"image_url(")
-        replace_file(to_css_path, /\(['"]{0,1}\.\.\/\.\.\/brix\.png['"]{0,1}\)/,"('brix.png')")
+        replace_file(to_css_path, /url\(['"]{0,1}\.\.\/\.\.\/brix\.png['"]{0,1}\)/,"image_url('brix.png')")
       end
     end
   end

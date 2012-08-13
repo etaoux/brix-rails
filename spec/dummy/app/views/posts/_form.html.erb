@@ -1,0 +1,15 @@
+<%= simple_form_for(@post) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :body, :input_html => { :style => "width:500px;height:200px;" } %>
+  <%= f.input :publish %>
+
+  <div class="control-group">
+    <label class="control-label" for="post_category_id">Category</label>
+    <div class="controls">
+      <%= bx_select_tag "post[category_id]", @post.category_id, :collection => Category.as_collection %>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= bx_button_tag("提交", :color => :blue) %> <%= bx_link_to "Cancel", posts_path %>
+  </div>
+<% end %>

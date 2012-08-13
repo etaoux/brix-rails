@@ -9,3 +9,6 @@
  *= require brix/starrating
  *= require brix/switcher
  */
+
+.dropdown { display:inline-block; min-width:180px;}
+form .error .help-inline { display:none; }

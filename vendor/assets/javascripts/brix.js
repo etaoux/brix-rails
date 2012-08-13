@@ -10,3 +10,11 @@
 //= require brix/pagination
 //= require brix/starrating
 //= require brix/switcher
+
+KISSY.ready(function(){
+  // Init Brix components
+  KISSY.use("brix/core/pagelet", function(S, Pagelet) {
+    brixPagelet = new Pagelet({tmpl:'body'});
+    brixPagelet.addBehavior();
+  })
+})

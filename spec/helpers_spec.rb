@@ -44,4 +44,18 @@ describe Brix::Rails::Helpers do
       end
     end
   end
+
+  describe "#bx_select_tag" do
+    it "Should work" do
+      html = bx_select_tag("post[category]", 3, :collection => [["Ruby",1],["Ruby on Rails",2],["Python",3],["Tornado",4]])
+      html.should include("bx-dropdown-post-category")
+    end
+  end
+
+  describe "#bx_switcher_tag" do
+    it "should work" do
+      bx_switcher_tag("post[sex]", true, :labels => %w(Male Female)).should include("switcher-on")
+      bx_switcher_tag("post[sex]", false, :labels => %w(Male Female)).should_not include("switcher-on")
+    end
+  end
 end

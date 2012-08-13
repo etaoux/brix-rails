@@ -3,6 +3,7 @@ require "rspec"
 require "active_record"
 require 'active_support'
 require "action_view"
+require "rails"
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 
@@ -37,7 +38,7 @@ RSpec.configure do |config|
   end
 
   config.include Brix::Rails::Helpers
-  config.include ActionView::Helpers::UrlHelper
+  config.include ActionView::Helpers
 
   config.after(:all) do
   end

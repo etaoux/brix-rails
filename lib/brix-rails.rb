@@ -1,5 +1,7 @@
 require "brix/rails/version"
 require "brix/rails/helpers"
+require "brix/will_paginate"
+require "brix/simple_form"
 
 module Brix
   module Rails
