@@ -18,7 +18,7 @@ namespace :assets do
   desc 'Update assets from Brix source'
   task :update do
     @dist_path = "../brix/dist/"
-    @assets_path = "#{ROOT_PATH}/lib/assets/"
+    @assets_path = "#{ROOT_PATH}/vendor/assets/"
     if not File.directory?(@dist_path)
       puts "(WARNNING) Brix source not exist, please clone it from git://github.com/etaoux/brix.git to ../brix"
       exit(0)

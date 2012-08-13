@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     brix-rails (0.0.1)
+      kissy-rails
 
 GEM
   remote: http://rubygems.org/

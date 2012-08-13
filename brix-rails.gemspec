@@ -20,5 +20,5 @@ Gem::Specification.new do |s|
   s.files        = `git ls-files`.split("\n")
   s.add_development_dependency "rails"
   s.add_development_dependency "kissy-rails"
-  # s.add_runtime_dependency "rest-client"
+  s.add_runtime_dependency "kissy-rails"
 end

@@ -20,6 +20,7 @@ Brix for Rails gem, make you fast use Brix in you Rails application.
 
 ```ruby
 gem "brix-rails"
+# And you need remove gem 'jquery-rails'
 ```
 
 2. Require brix assets in `application.js` and `application.css`
