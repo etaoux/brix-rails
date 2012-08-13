@@ -2,6 +2,11 @@
 
 Brix for Rails gem, make you fast use Brix in you Rails application.
 
+## Requirements
+
+* Rails
+* [kissy-rails](https://github.com/huacnlee/kissy-rails)
+
 ## Features
 
 ### Helpers
@@ -22,7 +27,9 @@ gem "brix-rails"
 application.js
 
 ```js
-#= require brix
+//= require kissy
+//= require kissy_ujs
+//= require brix
 ```
 
 application.css
