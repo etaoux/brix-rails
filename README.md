@@ -19,6 +19,7 @@ Brix for Rails gem, make you fast use Brix in you Rails application.
 1. Add this line to your Gemfile:
 
 ```ruby
+gem "kissy-rails"
 gem "brix-rails"
 # And you need remove gem 'jquery-rails'
 ```

@@ -3,7 +3,11 @@ require "brix/rails/helpers"
 
 module Brix
   module Rails
-    require "brix/rails/railte"
+    if ::Rails.version < "3.1"
+      require "brix/rails/railte"
+    else
+      require "brix/rails/engine"
+    end
   end
 end
 

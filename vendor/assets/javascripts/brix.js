@@ -1,4 +1,4 @@
-//= require brix_base
+//= require brix/base
 //= require brix/breadcrumbs
 //= require brix/colorpicker
 //= require brix/dialog
