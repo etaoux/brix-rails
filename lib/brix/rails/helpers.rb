@@ -24,6 +24,17 @@ module Brix
         bx_button_tag(label, opts)
       end
 
+      def bx_icon_tag(char, opts = {})
+        opts[:label] ||= ""
+        class_name = opts.delete(:class)
+        label = opts.delete(:label)
+        class_names = ["iconfont"]
+        class_names << class_name if !class_name.blank?
+        opts[:class] = class_names.join(" ")
+        icon = content_tag(:i, char, opts)
+        [icon,label].join("")
+      end
+
       BX_SELECT_TAG_TEMPLATE = %(
 <div id="bx-dropdown-{{id}}" bx-name="dropdown" bx-datakey="items" bx-tmpl="dropdown" class="dropdown">
   {{#items}}{{#selected}}

@@ -45,6 +45,20 @@ describe Brix::Rails::Helpers do
     end
   end
 
+  describe "#bx_icon_tag" do
+    it "should work" do
+      bx_icon_tag("ƚ").should == '<i class="iconfont">ƚ</i>'
+    end
+
+    it "should suport label" do
+      bx_icon_tag("ƚ", :label => "Label").should == '<i class="iconfont">ƚ</i>Label'
+    end
+
+    it "should suport add class" do
+      bx_icon_tag("ƚ", :class => "icon1").should == '<i class="iconfont icon1">ƚ</i>'
+    end
+  end
+
   describe "#bx_select_tag" do
     it "Should work" do
       html = bx_select_tag("post[category]", 3, :collection => [["Ruby",1],["Ruby on Rails",2],["Python",3],["Tornado",4]])
