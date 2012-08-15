@@ -10,6 +10,7 @@
 //= require brix/pagination
 //= require brix/starrating
 //= require brix/switcher
+//= require brix/loading
 
 KISSY.ready(function(){
   // Init Brix components

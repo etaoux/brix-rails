@@ -72,4 +72,18 @@ describe Brix::Rails::Helpers do
       bx_switcher_tag("post[sex]", false, :labels => %w(Male Female)).should_not include("switcher-on")
     end
   end
+
+  describe "#bx_loading_tag" do
+    it "should work" do
+      bx_loading_tag("loading", :style => 1).should == content_tag(:span, raw('<img />loading'), :class => "loading", 'bx-name' => 'loading', 'bx-config' => '{loadingStyle:1}')
+    end
+
+    it "should support nil label" do
+      bx_loading_tag(nil, :style => 2).should == content_tag(:span, tag(:img), :class => "loading", 'bx-name' => 'loading', 'bx-config' => '{loadingStyle:2}')
+    end
+
+    it "should support none param" do
+      bx_loading_tag().should_not nil
+    end
+  end
 end

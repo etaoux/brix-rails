@@ -8,6 +8,7 @@
  *= require brix/pagination
  *= require brix/starrating
  *= require brix/switcher
+ *= require brix/loading
  */
 
 .dropdown { display:inline-block; min-width:180px;}

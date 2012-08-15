@@ -81,6 +81,17 @@ module Brix
           raw Mustache.render(BX_SWITCHER_TAG_TEMPLATE, :id => id, :name => name, :on => value, :laebl0 => labels[0], :label1 => labels[1])
         end
       end
+
+      def bx_loading_tag(label = nil, opts = {})
+        style = opts.delete(:style)
+        style = 0 if not style.in?([0,1,2,3])
+        label ||= ""
+        class_name = opts.delete(:class)
+        class_names = ["loading"]
+        class_names << class_name if !class_name.blank?
+        opts.merge!({ 'bx-name' => "loading", 'bx-config' => "{loadingStyle:#{style}}", 'class' => class_names.join(" ") })
+        content_tag(:span,raw([tag(:img),label].join("")),opts)
+      end
     end # Helpers
   end
 end

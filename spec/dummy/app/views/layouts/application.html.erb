@@ -12,5 +12,9 @@
     <%= yield %>
   </div>
 
+  <%= bx_loading_tag("载入...", :style => 1) %>
+  <%= bx_loading_tag("载入2...", :style => 2) %>
+  <%= bx_loading_tag() %>
+  <%= bx_loading_tag("", :style => 3) %>
 </body>
 </html>

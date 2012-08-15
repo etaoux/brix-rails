@@ -26,7 +26,7 @@ namespace :assets do
     copy_file([@dist_path,"brix-min.css"].join("/"), "#{@assets_path}stylesheets/brix/base.scss")
     copy_file([@dist_path,"brix-min.js"].join("/"), "#{@assets_path}javascripts/brix/base.js")
     copy_file([@dist_path,"brix.png"].join("/"), "#{@assets_path}images/brix.png")
-    %w(breadcrumbs colorpicker dialog dropdown fold form inplaceeditor kwicks pagination starrating switcher).each do |c_name|
+    %w(breadcrumbs colorpicker dialog dropdown fold form inplaceeditor kwicks pagination starrating switcher loading).each do |c_name|
       copy_file([@dist_path,"gallery",c_name,"index-min.js"].join("/"), "#{@assets_path}javascripts/brix/#{c_name}.js")
       css_path = [@dist_path,"gallery",c_name,"#{c_name}-min.css"].join("/")
       to_css_path = "#{@assets_path}stylesheets/brix/#{c_name}.scss"
