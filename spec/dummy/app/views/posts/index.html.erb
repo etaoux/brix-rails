@@ -1,13 +1,19 @@
 <h1>Listing posts</h1>
 
+<div class="ux-table-operation">
+  <%= bx_link_to raw(bx_icon_tag("ƚ", :label => "New Post")), new_post_path %>
+</div>
+
 <table class="ux-table">
-  <tr>
-    <th>Title</th>
-    <th>Category</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Category</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
 
 <% @posts.each do |post| %>
   <tr>
@@ -20,8 +26,3 @@
 <% end %>
 </table>
 <%= will_paginate @posts %>
-
-<br />
-
-<%= bx_link_to 'New Post', new_post_path, :color => :blue %>
-<%= bx_link_to 'New Post', new_post_path, :color => :red, :style => :medium, :disabled => true %>

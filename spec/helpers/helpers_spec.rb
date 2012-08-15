@@ -62,7 +62,36 @@ describe Brix::Rails::Helpers do
   describe "#bx_select_tag" do
     it "Should work" do
       html = bx_select_tag("post[category]", 3, :collection => [["Ruby",1],["Ruby on Rails",2],["Python",3],["Tornado",4]])
-      html.should include("bx-dropdown-post-category")
+      html.should have_tag('div', :with => { 'id' => 'bx_dropdown_post_category', 'bx-name' => "dropdown", 'bx-tmpl' => 'dropdown', 'class' => 'dropdown' }) do
+        with_tag('span', :with => { 'class' => "dropdown-hd" }) do
+          with_tag('span', :with => { 'class' => 'dropdown-text', :value => 3 }, :text => "Python")
+        end
+        with_tag('ul', :with => { 'class' => 'dropdown-list' }) do
+          with_tag('li', :count => 4) do
+            with_tag(:span)
+            with_tag(:i, :with => { :class => "iconfont icon-ok" }, :text => "~")
+          end
+          with_tag('li', :with => { 'class' => 'dropdown-item' }, :count => 3)
+          with_tag('li', :with => { 'class' => 'dropdown-item dropdown-itemselected' }, :count => 1) do
+            with_tag('span', :with => { :value => 3}, :text => "Python")
+          end
+        end
+      end
+    end
+
+    it "支持 collection 为空的情况" do
+      bx_select_tag("post[category]", 3).should have_tag('div', :with => { 'id' => 'bx_dropdown_post_category', 'bx-name' => "dropdown", 'bx-tmpl' => 'dropdown', 'class' => 'dropdown' })
+    end
+
+    it "当 value 为空的时候，选择项为第一个" do
+      bx_select_tag("post[category]", nil, :collection => [["Ruby",1],["Rails",2]]).should have_tag('div') do
+        with_tag('span', :with => { 'class' => "dropdown-hd" }) do
+          with_tag('span', :with => { 'class' => 'dropdown-text', :value => 1 }, :text => "Ruby")
+          with_tag('li', :with => { 'class' => 'dropdown-item dropdown-itemselected' }, :count => 1) do
+            with_tag("span", :with => { :value => 1 }, :text => "Ruby")
+          end
+        end
+      end
     end
   end
 
@@ -70,6 +99,13 @@ describe Brix::Rails::Helpers do
     it "should work" do
       bx_switcher_tag("post[sex]", true, :labels => %w(Male Female)).should include("switcher-on")
       bx_switcher_tag("post[sex]", false, :labels => %w(Male Female)).should_not include("switcher-on")
+    end
+
+    it "支持不带 labels 的情况" do
+      bx_switcher_tag("post[publish]",true).should have_tag('div', :with => { 'id' => 'post_publish', 'bx-name' => "switcher", 'bx-tmpl' => 'switcher', 'class' => 'switcher switcher-on' }) do
+        with_tag('span', :with => { :class => "switcher-trigger switcher-on" })
+        with_tag('input', :with => { :type => "hidden", :name => 'post[publish]' })
+      end
     end
   end
 

@@ -9,9 +9,9 @@
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="bx_swither_post_publish"></label>
+    <label class="control-label" for="bx_swither_post_publish">公开</label>
     <div class="controls">
-      <%= bx_switcher_tag "post[publish]", @post.publish, :labels => %w(公开 不公开) %>
+      <%= bx_switcher_tag "post[publish]", @post.publish %>
     </div>
   </div>
 

@@ -36,7 +36,7 @@ module Brix
       end
 
       BX_SELECT_TAG_TEMPLATE = %(
-<div id="bx-dropdown-{{id}}" bx-name="dropdown" bx-datakey="items" bx-tmpl="dropdown" class="dropdown">
+<div id="bx_dropdown_{{id}}" bx-name="dropdown" bx-datakey="items" bx-tmpl="dropdown" class="dropdown">
   {{#items}}{{#selected}}
   <span class="dropdown-hd"><span class="dropdown-text" value="{{value}}">{{label}}</span><i class="iconfont icon-arrow-down">&#405</i></span>
   {{/selected}}{{/items}}
@@ -49,37 +49,42 @@ module Brix
       def bx_select_tag(name, value, opts = {})
         value = value
         collection = opts[:collection]
-        id = name.parameterize
+        id = name.parameterize("_")
 
         items = []
-        collection.collect do |c|
-          item = {
-            'value' => c[1],
-            'label' => c[0]
-          }
-          item['selected'] = true if c[1].to_s.strip == value.to_s.strip
-          items << item
+        value_in_collection = false
+        if !collection.blank?
+          collection.collect do |c|
+            item = {
+              'value' => c[1],
+              'label' => c[0]
+            }
+            if c[1].to_s.strip == value.to_s.strip
+              item['selected'] = true
+              value_in_collection = true
+            end
+            items << item
+          end
         end
-        if value.blank? and items.count > 0
+        if !value_in_collection and !items.blank?
           items[0]['selected'] = true
         end
         raw Mustache.render(BX_SELECT_TAG_TEMPLATE, :id => id, :name => name, :items => items)
       end
 
       BX_SWITCHER_TAG_TEMPLATE = %(
-<label class="label">{{label0}}</label>
-<div id="{{id}}" bx-name="switcher" bx-tmpl="switcher" class="switcher">
+{{#label0}}<span>{{label0}}</span>{{/label0}}
+<div id="{{id}}" bx-name="switcher" bx-tmpl="switcher" class="switcher{{#on}} switcher-on{{/on}}">
   <span class="switcher-trigger{{#on}} switcher-on{{/on}}"></span>
+  <input type="hidden" name="{{name}}" value="{{on}}" />
 </div>
-<label class="label">{{label1}}</label>
+{{#label1}}<span>{{label1}}</span>{{/label1}}
 )
       def bx_switcher_tag(name, value, opts = {})
         value = (value == true ? true : false)
-        id = name.parameterize
+        id = name.parameterize("_")
         labels = opts[:labels] || []
-        if labels.count == 2
-          raw Mustache.render(BX_SWITCHER_TAG_TEMPLATE, :id => id, :name => name, :on => value, :laebl0 => labels[0], :label1 => labels[1])
-        end
+        raw Mustache.render(BX_SWITCHER_TAG_TEMPLATE, :id => id, :name => name, :on => value, :laebl0 => labels[0], :label1 => labels[1])
       end
 
       def bx_loading_tag(label = nil, opts = {})

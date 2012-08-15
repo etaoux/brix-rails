@@ -11,5 +11,6 @@ gem "sass-rails"
 # 禁用 assets 日志
 gem 'quiet_assets', "1.0.1"
 gemspec
-
-gem 'rspec-html-matchers'
+group :test do
+  gem 'rspec-html-matchers'
+end

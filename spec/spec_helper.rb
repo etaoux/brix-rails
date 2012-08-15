@@ -1,7 +1,5 @@
-require 'rubygems'
-require "rspec"
+require 'rspec/core'
 require "active_record"
-require 'active_support'
 require "action_view"
 require "rails"
 
@@ -9,6 +7,7 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 
 require "rails/railtie"
 require "brix-rails"
+require 'rspec-html-matchers'
 
 ActiveRecord::Base.establish_connection(:adapter => "sqlite3", :database => ":memory:")
 ActiveRecord::Base.configurations = true
@@ -37,6 +36,7 @@ RSpec.configure do |config|
     class Post < ActiveRecord::Base; end
   end
 
+  # config.include Helpers
   config.include Brix::Rails::Helpers
   config.include ActionView::Helpers
 
