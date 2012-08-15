@@ -50,11 +50,11 @@ describe Brix::Rails::Helpers do
       bx_icon_tag("ƚ").should == '<i class="iconfont">ƚ</i>'
     end
 
-    it "should suport label" do
+    it "支持标签文字" do
       bx_icon_tag("ƚ", :label => "Label").should == '<i class="iconfont">ƚ</i>Label'
     end
 
-    it "should suport add class" do
+    it "支持自定义 class" do
       bx_icon_tag("ƚ", :class => "icon1").should == '<i class="iconfont icon1">ƚ</i>'
     end
   end
@@ -78,12 +78,12 @@ describe Brix::Rails::Helpers do
       bx_loading_tag("loading", :style => 1).should == content_tag(:span, raw('<img />loading'), :class => "loading", 'bx-name' => 'loading', 'bx-config' => '{loadingStyle:1}')
     end
 
-    it "should support nil label" do
+    it "支持 nil 的 label" do
       bx_loading_tag(nil, :style => 2).should == content_tag(:span, tag(:img), :class => "loading", 'bx-name' => 'loading', 'bx-config' => '{loadingStyle:2}')
     end
 
-    it "should support none param" do
-      bx_loading_tag().should_not nil
+    it "支持无参数的调用" do
+      bx_loading_tag.should ==  content_tag(:span, tag(:img), :class => "loading", 'bx-name' => 'loading', 'bx-config' => '{loadingStyle:0}')
     end
   end
 end
