@@ -18,7 +18,9 @@ Gem::Specification.new do |s|
 
   # specify any dependencies here; for example:
   s.files        = `git ls-files`.split("\n")
-  s.add_development_dependency "rails"
-  s.add_development_dependency "kissy-rails"
-  s.add_runtime_dependency "kissy-rails"
+  s.add_dependency "rails"
+  s.add_dependency "kissy-rails"
+  s.add_dependency "simple_form"
+  s.add_dependency "mustache"
+  s.add_dependency "will_paginate"
 end

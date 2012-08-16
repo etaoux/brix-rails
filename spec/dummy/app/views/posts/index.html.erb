@@ -1,28 +1,39 @@
 <h1>Listing posts</h1>
 
-<div class="ux-table-operation">
-  <%= bx_link_to raw(bx_icon_tag("ƚ", :label => "New Post")), new_post_path %>
+<div class="table-container">
+  <div class="toolbar btn-group">
+    <%= bx_link_to raw(bx_icon_tag("Ɓ", :label => "刷新")), posts_path, :size => :small %><%= bx_link_to raw(bx_icon_tag("ƚ", :label => "创建")), new_post_path, :size => :small %>
+  </div>
+
+  <table class="table">
+    <% if !@posts.blank? %>
+      <thead>
+        <tr>
+          <th>编号</th>
+          <th>标题</th>
+          <th class="center">类别</th>
+          <th class="right">操作</th>
+        </tr>
+      </thead>
+      <% @posts.each do |post| %>
+        <tr>
+          <td><%= post.id %></td>
+          <td><%= post.title %></td>
+          <td class="center"><%= post.category_name %></td>
+          <td class="right">
+            <div class="operation btn-group">
+              <%= bx_link_to bx_icon_tag(235), post, :size => :xsmall %><%= bx_link_to bx_icon_tag(372), edit_post_path(post), :size => :xsmall %><%= bx_link_to bx_icon_tag(356), post, :size => :xsmall, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr class="none">
+        <td>暂无内容</td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="table-foot">
+    <%= will_paginate @posts %>
+  </div>
 </div>
-
-<table class="ux-table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Category</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-<% @posts.each do |post| %>
-  <tr>
-    <td><%= post.title %></td>
-    <td><%= post.category_name %></td>
-    <td><%= bx_link_to 'Show', post %></td>
-    <td><%= bx_link_to 'Edit', edit_post_path(post), color: :blue %></td>
-    <td><%= bx_link_to 'Destroy', post, method: :delete, color: :red, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-<%= will_paginate @posts %>

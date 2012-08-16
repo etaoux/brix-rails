@@ -3,5 +3,5 @@
  *= require_self
  */
 
-body { text-align:center;}
+body { text-align:center; }
 .container { text-align:left; margin:0 auto;}

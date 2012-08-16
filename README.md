@@ -22,6 +22,8 @@ Brix for Rails gem, make you fast use Brix in you Rails application.
 
 ```ruby
 gem "kissy-rails"
+gem "will_paginate"
+gem "simple_form"
 gem "brix-rails"
 # And you need remove gem 'jquery-rails'
 ```

@@ -1,0 +1,49 @@
+<div id="<%= plural_table_name %>" class="table-container">
+  <div class="toolbar btn-group">
+    <%%= bx_link_to bx_icon_tag(385, :label => "刷新列表"), <%= plural_file_name %>_path, :size => :small %><%%= bx_link_to bx_icon_tag(446, :label => "新建"), new_<%= singular_table_name %>_path, :size => :small %>
+  </div>
+
+  <table class="table">
+    <%% if !@<%= plural_file_name %>.blank? %>
+      <thead>
+        <tr>
+          <th>编号</th>
+  <% attributes.each do |attr| -%>
+          <th><%%= t("activerecord.attributes.<%= file_name %>.<%= attr.name %>") %></th>
+  <% end -%>
+          <th class="center">创建时间</th>
+          <th class="right">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+      <%% @<%= plural_file_name %>.each do |item| %>
+      <tr class="<%%= cycle("","even") %>">
+        <td><%%= link_to item.id, <%= singular_table_name %>_path(item.id) %></td>
+<% attributes.each do |attr| -%>
+        <td><%%= item.<%= attr.name %> %></td>
+<% end -%>
+        <td class="center"><%%= l(item.created_at, :format => :long) %></td>
+        <td class="right">
+          <div class="operation btn-group">
+            <%%= bx_link_to bx_icon_tag(235), item, :size=> :xsmall %><%%= bx_link_to bx_icon_tag(372), edit_<%= singular_table_name %>_path(item.id), :size => :xsmall %><%%= bx_link_to bx_icon_tag(356), item, :method => :delete, :'data-confirm' => '确定要删除吗?', :size => :xsmall %>
+          </div>
+        </td>
+      </tr>
+      <%% end %>
+      <tbody>
+    <%% else %>
+     <tr class="none">
+        <td>
+          <p>还没有任何内容，赶紧创建吧！</p>
+          <span class="create-btn">
+            <%%= bx_link_to bx_icon_tag(446, :label => "立刻创建"), new_<%= singular_table_name %>_path, :size => :medium %>
+          </span>
+        </td>
+      </tr>
+    <%% end %>
+  </table>
+  <div class="table-foot">
+    <%%= will_paginate @<%= plural_file_name %> %>
+  </div>
+</div>
+

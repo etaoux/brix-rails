@@ -51,11 +51,16 @@ describe Brix::Rails::Helpers do
     end
 
     it "支持标签文字" do
-      bx_icon_tag("ƚ", :label => "Label").should == '<i class="iconfont">ƚ</i>Label'
+      bx_icon_tag("ƚ", :label => "Label").should == '<i class="iconfont">ƚ</i> Label'
     end
 
     it "支持自定义 class" do
       bx_icon_tag("ƚ", :class => "icon1").should == '<i class="iconfont icon1">ƚ</i>'
+    end
+
+    it "支持直接用数字编号作为 char 参数" do
+      bx_icon_tag(33).should == '<i class="iconfont">&#33</i>'
+      bx_icon_tag("233").should == '<i class="iconfont">&#233</i>'
     end
   end
 

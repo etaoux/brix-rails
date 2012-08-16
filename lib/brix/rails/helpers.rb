@@ -19,20 +19,29 @@ module Brix
         end
       end
 
+
       def bx_link_to(label, href, opts = {})
         opts[:href] = href
         bx_button_tag(label, opts)
       end
 
+      # Generate <i class="iconfont">&##{char}</i>
+      # params:
+      #   char  :  可接受一个数字（最后会在前面加上 &#），可以是直接的字体字符
+      #
       def bx_icon_tag(char, opts = {})
         opts[:label] ||= ""
         class_name = opts.delete(:class)
+        if char.to_s.match(/[\d]+/)
+          char = "&##{char}"
+        end
         label = opts.delete(:label)
+        label = " #{label}" if !label.blank?
         class_names = ["iconfont"]
         class_names << class_name if !class_name.blank?
         opts[:class] = class_names.join(" ")
-        icon = content_tag(:i, char, opts)
-        [icon,label].join("")
+        icon = content_tag(:i, raw(char), opts)
+        raw [icon,label].join("")
       end
 
       BX_SELECT_TAG_TEMPLATE = %(
