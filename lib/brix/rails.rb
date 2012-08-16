@@ -1,5 +1,6 @@
 require "brix/rails/version"
-require "brix/rails/helpers"
+require "brix/rails/view_helpers"
+require "brix/rails/controller_helpers"
 require "brix/will_paginate"
 require "brix/simple_form"
 
@@ -13,4 +14,5 @@ module Brix
   end
 end
 
-ActionView::Base.send :include, Brix::Rails::Helpers
+ActionView::Base.send :include, Brix::Rails::ViewHelpers
+ActionController::Base.send :include, Brix::Rails::ControllerHelpers

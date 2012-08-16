@@ -1,8 +1,9 @@
+# coding: utf-8
 require 'mustache'
 
 module Brix
   module Rails
-    module Helpers
+    module ViewHelpers
       def bx_button_tag(label, opts = {})
         class_names = %w(btn)
         color = opts.delete(:color)
@@ -105,6 +106,15 @@ module Brix
         class_names << class_name if !class_name.blank?
         opts.merge!({ 'bx-name' => "loading", 'bx-config' => "{loadingStyle:#{style}}", 'class' => class_names.join(" ") })
         content_tag(:span,raw([tag(:img),label].join("")),opts)
+      end
+
+      def bx_breadcrumbs_tag
+        @bx_breadcrumbs ||= []
+        lis = @bx_breadcrumbs.collect do |item|
+          content_tag(:li, link_to(item[0], item[1]), :class => "item")
+        end
+        split_li = '<li class="item split"><i class="iconfont">ƒ</i></li>'
+        content_tag(:ul, raw(lis.join(split_li)), :class => "breadcrumbs clearfix", 'bx-name' => "breadcrumbs")
       end
     end # Helpers
   end

@@ -1,8 +1,15 @@
 class PostsController < ApplicationController
+  before_filter :init_breadcrumbs
+
+  def init_breadcrumbs
+    drop_breadcrumb("Posts", posts_path)
+  end
+
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post.includes(:category).paginate(:page => params[:page], :per_page => 10)
+    drop_breadcrumb("List")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +21,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
+    drop_breadcrumb("View")
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +33,7 @@ class PostsController < ApplicationController
   # GET /posts/new.json
   def new
     @post = Post.new
+    drop_breadcrumb("New")
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +44,7 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
+    drop_breadcrumb("Edit")
   end
 
   # POST /posts

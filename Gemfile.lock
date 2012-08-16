@@ -3,6 +3,10 @@ PATH
   specs:
     brix-rails (0.0.1)
       kissy-rails
+      mustache
+      rails
+      simple_form
+      will_paginate
 
 GEM
   remote: http://rubygems.org/

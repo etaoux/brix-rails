@@ -1,6 +1,6 @@
 # coding: utf-8
 require "spec_helper"
-describe Brix::Rails::Helpers do
+describe Brix::Rails::ViewHelpers do
   describe "#bx_button_tag" do
     context "Link" do
       it "支持 A 标签的按钮" do
@@ -85,7 +85,7 @@ describe Brix::Rails::Helpers do
     end
 
     it "支持 collection 为空的情况" do
-      bx_select_tag("post[category]", 3).should have_tag('div', :with => { 'id' => 'bx_dropdown_post_category', 'bx-name' => "dropdown", 'bx-tmpl' => 'dropdown', 'class' => 'dropdown' })
+      bx_select_tag("post[category]", 3).should have_tag('div#bx_dropdown_post_category', :with => { 'bx-name' => "dropdown", 'bx-tmpl' => 'dropdown', 'class' => 'dropdown' })
     end
 
     it "当 value 为空的时候，选择项为第一个" do
@@ -107,7 +107,7 @@ describe Brix::Rails::Helpers do
     end
 
     it "支持不带 labels 的情况" do
-      bx_switcher_tag("post[publish]",true).should have_tag('div', :with => { 'id' => 'post_publish', 'bx-name' => "switcher", 'bx-tmpl' => 'switcher', 'class' => 'switcher switcher-on' }) do
+      bx_switcher_tag("post[publish]",true).should have_tag('div#post_publish', :with => { 'bx-name' => "switcher", 'bx-tmpl' => 'switcher', 'class' => 'switcher switcher-on' }) do
         with_tag('span', :with => { :class => "switcher-trigger switcher-on" })
         with_tag('input', :with => { :type => "hidden", :name => 'post[publish]' })
       end
@@ -125,6 +125,22 @@ describe Brix::Rails::Helpers do
 
     it "支持无参数的调用" do
       bx_loading_tag.should ==  content_tag(:span, tag(:img), :class => "loading", 'bx-name' => 'loading', 'bx-config' => '{loadingStyle:0}')
+    end
+  end
+
+  describe "#bx_breadcrumbs_tag" do
+    it "should work" do
+      @bx_breadcrumbs = [["Ruby","#1"],["Rails",'#2']]
+      bx_breadcrumbs_tag.should have_tag('ul', :with => { 'bx-name' => "breadcrumbs", :class => "breadcrumbs clearfix" }) do
+        with_tag('li.item', :count => 3)
+        with_tag('li.item', :text => "Ruby")
+        with_tag('li', :with => { :class => 'item split' }, :count => 1)
+      end
+    end
+
+    it "should work when @bx_breadcrumbs is nil" do
+      @bx_breadcrumbs = nil
+      bx_breadcrumbs_tag.should have_tag(:ul, :with => { 'bx-name' => "breadcrumbs", :class => 'breadcrumbs' })
     end
   end
 end
