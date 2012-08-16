@@ -108,13 +108,14 @@ module Brix
         content_tag(:span,raw([tag(:img),label].join("")),opts)
       end
 
-      def bx_breadcrumbs_tag
+      def bx_breadcrumbs_tag(label = "你的位置:")
         @bx_breadcrumbs ||= []
+        label_li = content_tag(:li, label, :class => "item label")
         lis = @bx_breadcrumbs.collect do |item|
           content_tag(:li, link_to(item[0], item[1]), :class => "item")
         end
         split_li = '<li class="item split"><i class="iconfont">ƒ</i></li>'
-        content_tag(:ul, raw(lis.join(split_li)), :class => "breadcrumbs clearfix", 'bx-name' => "breadcrumbs")
+        content_tag(:ul, raw([label_li,lis.join(split_li)].join("")), :class => "breadcrumbs", 'bx-name' => "breadcrumbs")
       end
     end # Helpers
   end

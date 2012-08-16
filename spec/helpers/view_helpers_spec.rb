@@ -131,9 +131,10 @@ describe Brix::Rails::ViewHelpers do
   describe "#bx_breadcrumbs_tag" do
     it "should work" do
       @bx_breadcrumbs = [["Ruby","#1"],["Rails",'#2']]
-      bx_breadcrumbs_tag.should have_tag('ul', :with => { 'bx-name' => "breadcrumbs", :class => "breadcrumbs clearfix" }) do
-        with_tag('li.item', :count => 3)
+      bx_breadcrumbs_tag.should have_tag('ul', :with => { 'bx-name' => "breadcrumbs", :class => "breadcrumbs" }) do
+        with_tag('li.item', :count => 4)
         with_tag('li.item', :text => "Ruby")
+        with_tag('li.label', :text => "你的位置:")
         with_tag('li', :with => { :class => 'item split' }, :count => 1)
       end
     end
@@ -141,6 +142,12 @@ describe Brix::Rails::ViewHelpers do
     it "should work when @bx_breadcrumbs is nil" do
       @bx_breadcrumbs = nil
       bx_breadcrumbs_tag.should have_tag(:ul, :with => { 'bx-name' => "breadcrumbs", :class => 'breadcrumbs' })
+    end
+
+    it "支持更改标签内容" do
+      bx_breadcrumbs_tag("AAA").should have_tag(:ul, :with => { 'bx-name' => "breadcrumbs", :class => 'breadcrumbs' }) do
+        with_tag('li.label', :text => "AAA")
+      end
     end
   end
 end
