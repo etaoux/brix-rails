@@ -8,7 +8,7 @@ module Brix
         class_names = %w(btn)
         color = opts.delete(:color)
         class_names << "btn-#{color}" if color.to_s.in?(%w(red blue orange))
-        size = opts.delete(:size)
+        size = opts.delete(:size) || "medium"
         class_names << "btn-#{size}" if size.to_s.in?(%w(xlarge large medium small xsmall tiny))
         class_names << "btn-disabled" if opts[:disabled] == true
         opts.merge!(:class => class_names.join(" "))
