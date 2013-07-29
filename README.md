@@ -25,6 +25,14 @@ gem "kissy-rails"
 gem "will_paginate"
 gem "simple_form"
 gem "brix-rails"
+
+
+2. Install brix template
+
+```bash
+rails g brix:install
+```
+
 # And you need remove gem 'jquery-rails'
 ```
 

@@ -1,0 +1,7 @@
+/*
+ *= require brix/base
+ *= require_tree ./brix
+ */
+
+.dropdown { display:inline-block; min-width:180px;}
+form .error .help-inline { display:none; }
